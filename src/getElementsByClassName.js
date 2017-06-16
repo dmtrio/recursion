@@ -14,8 +14,6 @@ var getElementsByClassName = function(className) {
     var foundNodes = [];
 
   var recursiveGetElementsByClassName = function(className){
-    // console.log('recursive');
-    // console.log(currentNode.nodeType);
     containsClassName(className);
     hasChildNodes(className);
     hasSiblingNodes(className);
@@ -24,17 +22,14 @@ var getElementsByClassName = function(className) {
 
   var containsClassName = function(className) {
     if(currentNode.nodeType === 1){
-      //console.log( currentNode ,currentNode.classList.contains(className));
       if (currentNode.classList.contains(className)) {
         foundNodes.push(currentNode);
-        //console.log('contains class');
       }
     }
   };
 
   var hasChildNodes = function(className) {
     if(currentNode.firstChild !== null) {
-      //console.log('has child');
       currentNode = currentNode.firstChild;
       recursiveGetElementsByClassName(className);
     }
@@ -42,7 +37,6 @@ var getElementsByClassName = function(className) {
 
   var hasSiblingNodes = function(className) {
     if(currentNode.nextSibling !== null) {
-      //console.log('has sibling');
       currentNode = currentNode.nextSibling;
       recursiveGetElementsByClassName(className);
     }
@@ -50,7 +44,6 @@ var getElementsByClassName = function(className) {
 
   var parentHasSiblingNodes = function(className) {
       if (currentNode.parentNode !== null) {
-        //console.log('parent sib search');
         currentNode = currentNode.parentNode;
         hasSiblingNodes(className);
       }
@@ -58,7 +51,5 @@ var getElementsByClassName = function(className) {
 
   recursiveGetElementsByClassName(className);
 
-  console.log(JSON.stringify(foundNodes));
   return foundNodes;
-
 };
